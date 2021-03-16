@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Static Template</title>
+</head>
+
+<body>
+  <button onclick="baixarImagem()">Baixar Arquivo</button>
+
+  <script type="text/javascript">
+    function baixarImagem() {
+      var url = "https://i0.wp.com/www.institutoniemeyer.org/wp-content/uploads/2018/09/teste.png";
+      console.log(url);
+      var tempLink = document.createElement("a");
+      tempLink.href = url;
+      tempLink.download = "imagem.png";
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+    }
+  </script>
+</body>
+
+</html>
