@@ -6,17 +6,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Static Template</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    main {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main button {
+      border: 0;
+      background-color: #4e54ff;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
-  <button onclick="baixarImagem()">Baixar Arquivo</button>
-
-  <script type="text/javascript">
-    function baixarImagem() {
-      var url = "https://i0.wp.com/www.institutoniemeyer.org/wp-content/uploads/2018/09/teste.png";
-      // download da imagem pela url
-    }
-  </script>
+  <main>
+    <button id="btn-download">Download Imagem</button>
+  </main>
 </body>
+<script>
+  var urlImg = 'https://i0.wp.com/www.institutoniemeyer.org/wp-content/uploads/2018/09/teste.png';
+  document.querySelector('#btn-download')
+    .addEventListener('click', async function () {
+      var response = await fetch(urlImg);
+      var blob = await response.blob();
+      var a = document.createElement('a');
+      a.setAttribute('href', window.URL.createObjectURL(blob));
+      a.setAttribute('download', 'image');
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    })
+</script>
 
 </html>
